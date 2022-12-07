@@ -3,7 +3,8 @@ package com.company;
 import java.util.Scanner;
 
 public class Task {
-    private final int[] parameters = {1,2,3,4,5,6,7}; //A ... G
+    private final int[] parameters = {1,2,4,2,3,1,2}; //A ... G
+    private final double EPSILON = 0.001;
     public void run(){
         double [] point = {1,1,1};
         double [] der;
@@ -14,13 +15,13 @@ public class Task {
         }while(isInEpsilon(der) && isInRange(point));
     }
     private boolean isInEpsilon(double[] der){
-        return Math.abs(der[0])>= 0.01 && Math.abs(der[1])>= 0.01 && Math.abs(der[2])>= 0.01;
+        return Math.abs(der[0])>= EPSILON && Math.abs(der[1])>= EPSILON && Math.abs(der[2])>= EPSILON;
     }
     private boolean isInRange(double[] point){
         return !Double.isInfinite(point[0]) && !Double.isInfinite(point[1]) && !Double.isInfinite(point[2]);
     }
     private double f(double x1, double x2,double x3){
-        return 2 * parameters[1] * x1 * x1 + parameters[1] * x2 * x2 + parameters[2] * x3 * x3 + parameters[3] * x1 * x2 * x3 + parameters[4] * x1 + parameters[5] * x2 + parameters[6] * x3;
+        return 2 * parameters[0] * x1 * x1 + parameters[1] * x2 * x2 + parameters[2] * x3 * x3 + parameters[3] * x1 * x2 * x3 + parameters[4] * x1 + parameters[5] * x2 + parameters[6] * x3;
     }
     private double x1(double x2, double x3){
         return -x2*x3 - parameters[3]/parameters[4];
